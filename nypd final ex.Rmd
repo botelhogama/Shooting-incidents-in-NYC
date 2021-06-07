@@ -1,8 +1,8 @@
 ---
 title: "NYPD Incidents"
 output:
-  html_document: default
   pdf_document: default 
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -334,12 +334,19 @@ nyfcomp <- nyf_incidents_by_year
    geom_point(aes(x=Deaths, y=pred), color = "red")
  ```
 
+
  
- 
-  As shown in summary function, the number of incidents are 244 times the number of deaths. Linear modeling seems to be able to be used only looking at anual count of incidents. Looking at the daily register, as plot with each bourough, the data cannot be categorized by any linear function.
- 
- Another observation is that incidents wich black people are involved are greater than any other race in New York City. That shows a social inequality in education, opportunities and cultural of people geographically close of each other, only based on wealthy and skin collour.
+  As shown in summary function, the fit of the linear regression model fits very well as $R^2$ is 0.92 and p-value is $1.61*10^-8$.
  
 
+ The residuals randomic distributed in a eucledian space associated to an "good" $R^2$ is a signal of good fitting between model and real data.
+
+ ```{r echo = TRUE}
+plot(mod1$residuals, pch = 16, col = "red")
+``` 
+# Conclusion
    
+An observation is that incidents wich black people are involved are greater than any other race in New York City. That shows a social inequality in education, opportunities and cultural of people geographically close of each other, only based on wealthy and skin collour.
 
+And the correlation of incidents and deaths is equal to
+$Deaths = 240.13 +4.45*Cases$
